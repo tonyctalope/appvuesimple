@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<title>Basic API GET in vuejs</title>
+	<style>
+		#project {
+			font-family: 'Roboto', sans-serif;
+		}
+
+		li {
+			margin-bottom: 2cm;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="project">
+		<!-- <pre>{{commits}}</pre> -->
+		<h1>Posts</h1>
+		<ul>
+			<li v-for="(post, index) in posts">
+				<h2>Post {{ index }}</h2>
+				<h3>{{ post.title }}</h3>
+				<p>{{ post.body }}</p>
+			</li>
+		</ul>
+	</div>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/vue@3"></script>
+	<script>
+		const apiURL =
+			"https://jsonplaceholder.typicode.com/posts";
+
+		Vue.createApp({
+			data() {
+				return {
+					posts: null,
+				};
+			},
+
+			created: function () {
+				this.fetchDataAsync();
+			},
+
+			methods: {
+				fetchDataAsync: async function () {
+					try {
+						const response = await axios.get(apiURL)
+						console.log(response.data)
+						this.posts = response.data
+						// console.log(self.commits[0].html_url);
+					} catch (error) {
+						console.log(error);
+					}
+				}
+			},
+		}).mount("#project");
+	</script>
+</body>
+
+</html>
