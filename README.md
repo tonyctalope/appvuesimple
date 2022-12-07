@@ -1,6 +1,6 @@
 # appvuesimple
 
-I show all posts title and body text in my app.
+I show all articles title and description html in my app.
 
 ## api used
 https://data.nantesmetropole.fr/api/datasets/1.0/search/?q=&rows=10
